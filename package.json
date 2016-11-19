@@ -1,6 +1,6 @@
 {
   "name": "al-request",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Network request library for labrador and alaska.",
   "keywords": ["labrador", "alaska", "weixin", "wechat", "wxa", "wxapp"],
   "main": "index.js",

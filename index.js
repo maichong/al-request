@@ -5,7 +5,7 @@
  */
 
 import wx from 'labrador';
-import qs from 'qs';
+import stringify from 'qs/lib/stringify';
 
 /**
  * 默认获取SessionID方法
@@ -31,7 +31,7 @@ const methods = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'TRACE', 'CO
  * @param {Object} options 选项
  * @returns {Function}
  */
-function create(options) {
+export function create(options) {
   options = options || {};
 
   /**
@@ -48,6 +48,7 @@ function create(options) {
     const headerKey = options.headerKey || 'Session';
     const getSession = options.getSession || defaultGetSession;
     const setSession = options.setSession || defaultSetSession;
+    const defaultHeader = options.defaultHeader;
 
     if (methods.indexOf(method) === -1) {
       header = data;
@@ -58,8 +59,8 @@ function create(options) {
 
     let url = apiRoot + apiName;
 
-    if (['GET', 'DELETE', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT'].indexOf(method) > -1 && data) {
-      let querystring = qs.stringify(data);
+    if (['POST', 'PUT'].indexOf(method) === -1 && data) {
+      let querystring = stringify(data);
       if (url.indexOf('?') > -1) {
         url += '&' + querystring;
       } else {
@@ -68,11 +69,13 @@ function create(options) {
       data = undefined;
     }
 
-    header = header || {};
+    header = Object.assign({}, defaultHeader, header);
 
-    let sessionId = getSession();
-    if (sessionId) {
-      header[headerKey] = sessionId;
+    if (options.session !== false) {
+      let sessionId = getSession();
+      if (sessionId) {
+        header[headerKey] = sessionId;
+      }
     }
 
     let res = await wx.request({
@@ -82,8 +85,11 @@ function create(options) {
       header
     });
 
-    if (res.data && res.data[updateKey]) {
-      setSession(res.data[updateKey]);
+
+    if (options.session !== false && res.data && res.data[updateKey]) {
+      if (res.data && res.data[updateKey]) {
+        setSession(res.data[updateKey]);
+      }
     }
 
     if (res.data && res.data.error) {
