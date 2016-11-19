@@ -1,0 +1,27 @@
+{
+  "name": "al-request",
+  "version": "0.1.0",
+  "description": "Network request library for labrador and alaska.",
+  "keywords": ["labrador", "alaska", "weixin", "wechat", "wxa", "wxapp"],
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maichong/al-request.git"
+  },
+  "author": {
+    "email": "liang@maichong.it",
+    "name": "liang",
+    "url": "https://github.com/liangxingchen"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maichong/al-request/issues"
+  },
+  "homepage": "https://github.com/maichong/al-request#readme",
+  "dependencies": {
+    "labrador": "^0.6.0",
+    "qs": "^6.3.0"
+  }
+}
