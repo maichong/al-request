@@ -108,6 +108,8 @@ export function create(options) {
   request.setOptions = function (newOptions) {
     options = newOptions || {};
   };
+
+  return request;
 }
 
 /**
