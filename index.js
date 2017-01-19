@@ -106,14 +106,10 @@ export function create(options) {
   });
 
   request.setOptions = function (newOptions) {
-    options = newOptions || {};
-  };
-
-  request.updateOptions = function (newOptions) {
     options = Object.assign(options, newOptions || {});
   };
 
-  request.getOptions = function (newOptions) {
+  request.getOptions = function () {
     return options;
   };
 
