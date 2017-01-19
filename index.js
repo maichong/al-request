@@ -109,6 +109,10 @@ export function create(options) {
     options = newOptions || {};
   };
 
+  request.updateOptions = function (newOptions) {
+    options = Object.assign(options, newOptions || {});
+  };
+
   return request;
 }
 

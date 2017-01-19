@@ -90,6 +90,8 @@ defaultHeader| Object |         | 默认Header
 
 ##### request.setOptions(options)
 
+##### request.updateOptions(options)
+
 request 的第一个参数指定请求的方法，有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT，可以省略，默认为 GET
 
 `request('my/api')` 等价于 `request('GET', 'my/api')` 等价于 `request.get('my/api')`
