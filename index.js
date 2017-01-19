@@ -113,6 +113,10 @@ export function create(options) {
     options = Object.assign(options, newOptions || {});
   };
 
+  request.getOptions = function (newOptions) {
+    return options;
+  };
+
   return request;
 }
 
